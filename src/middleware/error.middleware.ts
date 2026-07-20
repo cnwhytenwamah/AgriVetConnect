@@ -1,17 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-
-interface AppError extends Error {
-  statusCode?: number;
-  isOperational?: boolean;
-}
+import { ApiError } from "../utils/apiError";
 
 export function errorMiddleware(
-  err: AppError,
+  err: ApiError | Error,
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const statusCode = err.statusCode || 500;
+  const statusCode = err instanceof ApiError ? err.statusCode : 500;
   const message = err.message || "Internal Server Error";
 
   console.error(`[ERROR] ${req.method} ${req.originalUrl} - ${message}`);
