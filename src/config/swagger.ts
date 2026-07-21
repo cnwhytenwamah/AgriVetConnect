@@ -7,7 +7,7 @@ const options: swaggerJsdoc.Options = {
       title: "AgriVet Connect API",
       version: "1.0.0",
       description:
-        "Backend API for AgriVet Connect — a platform connecting livestock owners with veterinary services and agricultural supplies.",
+        "Backend API for AgriVet Connect - a platform connecting livestock owners with veterinary services and agricultural supplies.",
     },
     servers: [
       {
@@ -26,7 +26,7 @@ const options: swaggerJsdoc.Options = {
     },
     security: [{ bearerAuth: [] }],
   },
-  apis: ["./src/modules/**/*.routes.ts"], // scans route files for JSDoc comments
+  apis: ["./src/modules/**/*.routes.ts"], 
 };
 
 export const swaggerSpec = swaggerJsdoc(options);
