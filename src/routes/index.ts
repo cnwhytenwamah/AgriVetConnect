@@ -3,6 +3,7 @@ import categoriesRoutes from "../modules/categories/categories.routes";
 import productsRoutes from "../modules/products/products.routes";
 import inventoryRoutes from "../modules/inventory/inventory.routes";
 import servicesRoutes from "../modules/services/services.routes";
+import appointmentsRoutes from "../modules/appointments/appointments.routes";
 
 const router = Router();
 
@@ -16,4 +17,5 @@ router.use("/categories", categoriesRoutes);
 router.use("/products", productsRoutes);
 router.use("/inventory", inventoryRoutes);
 router.use("/services", servicesRoutes);
+router.use("/appointments", appointmentsRoutes);
 export default router;
