@@ -28,6 +28,8 @@ Work is split by **module ownership**, following the natural boundaries in the p
 - **Day 8–11:** Tomiwa's scope — cart, orders, payments, reporting
 - **Day 12–14:** Everyone — testing, documentation, bug fixes, deployment
 
+admin@agrivetconnect.com / Admin@123
+
 ### Git workflow suggestion
 
 One branch per module owner (`feature/auth`, `feature/appointments`, `feature/orders`), PR into `develop`, merge to `main` after review.
