@@ -1,12 +1,11 @@
-import { PrismaClient } from "@prisma/client";
-import { ApiError } from "../../utils/apiError";
-import { hashPassword, comparePassword } from "../../utils/bcrypt.util";
-import { signToken } from "../../utils/jwt.util";
-import { RegisterInput, LoginInput } from "./auth.validation";
+const { PrismaClient } = require("@prisma/client");
+const { ApiError } = require("../../utils/apiError");
+const { hashPassword, comparePassword } = require("../../utils/bcrypt.util");
+const { signToken } = require("../../utils/jwt.util");
 
 const prisma = new PrismaClient();
 
-export async function registerUser(input: RegisterInput) {
+async function registerUser(input) {
   const existingUser = await prisma.user.findUnique({
     where: { email: input.email },
   });
@@ -49,7 +48,7 @@ export async function registerUser(input: RegisterInput) {
   return { user: userWithoutPassword, token };
 }
 
-export async function loginUser(input: LoginInput) {
+async function loginUser(input) {
   const user = await prisma.user.findUnique({
     where: { email: input.email },
     include: { role: true },
@@ -79,3 +78,5 @@ export async function loginUser(input: LoginInput) {
 
   return { user: userWithoutPassword, token };
 }
+
+module.exports = { registerUser, loginUser };

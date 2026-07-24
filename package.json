@@ -11,6 +11,9 @@
     "prisma:studio": "prisma studio",
     "test": "jest"
   },
+    "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "keywords": ["nodejs", "express", "prisma", "postgresql", "veterinary", "capstone"],
   "author": "Nwamah Clinton, Odusanya Abayomi, Oseni Tomiwa",
   "license": "ISC",

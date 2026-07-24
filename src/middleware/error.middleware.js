@@ -1,5 +1,7 @@
+const { ApiError } = require("../utils/apiError");
+
 function errorMiddleware(err, req, res, next) {
-  const statusCode = err.statusCode || 500;
+  const statusCode = err instanceof ApiError ? err.statusCode : 500;
   const message = err.message || "Internal Server Error";
 
   console.error(`[ERROR] ${req.method} ${req.originalUrl} - ${message}`);
