@@ -1,6 +1,6 @@
-import * as appointmentsService from "./appointments.service.js";
+const appointmentsService = require("./appointments.service");
 
-export const getAllAppointments = async (req, res) => {
+const getAllAppointments = async (req, res) => {
   try {
     const appointments = await appointmentsService.getAllAppointments();
     res.status(200).json({ success: true, data: appointments });
@@ -11,7 +11,7 @@ export const getAllAppointments = async (req, res) => {
   }
 };
 
-export const getAppointmentById = async (req, res) => {
+const getAppointmentById = async (req, res) => {
   try {
     const id = String(req.params.id);
     const appointments = await appointmentsService.getAppointmentById(id);
@@ -28,7 +28,7 @@ export const getAppointmentById = async (req, res) => {
   }
 };
 
-export const createAppointment = async (req, res) => {
+const createAppointment = async (req, res) => {
   try {
     const appointments = await appointmentsService.createAppointment(req.body);
     res.status(201).json({ success: true, data: appointments });
@@ -39,7 +39,7 @@ export const createAppointment = async (req, res) => {
   }
 };
 
-export const updateAppointment = async (req, res) => {
+const updateAppointment = async (req, res) => {
   try {
     const id = String(req.params.id);
     const appointments = await appointmentsService.updateAppointment(
@@ -57,7 +57,7 @@ export const updateAppointment = async (req, res) => {
   }
 };
 
-export const deleteAppointment = async (req, res) => {
+const deleteAppointment = async (req, res) => {
   try {
     const id = String(req.params.id);
     await appointmentsService.deleteAppointment(id);
@@ -67,4 +67,12 @@ export const deleteAppointment = async (req, res) => {
       .status(500)
       .json({ success: false, message: "Failed to delete appointment" });
   }
+};
+
+module.exports = {
+  getAllAppointments,
+  getAppointmentById,
+  createAppointment,
+  updateAppointment,
+  deleteAppointment,
 };

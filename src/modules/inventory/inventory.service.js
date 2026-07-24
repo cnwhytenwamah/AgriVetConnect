@@ -1,31 +1,39 @@
-import { PrismaClient } from "@prisma/client";
+const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-export const getAllInventory = async () => {
+const getAllInventory = async () => {
   return prisma.inventory.findMany({
     include: { product: true },
   });
 };
 
-export const getInventoryByProductId = async (productId) => {
+const getInventoryByProductId = async (productId) => {
   return prisma.inventory.findUnique({
     where: { productId },
     include: { product: true },
   });
 };
 
-export const createInventory = async (data) => {
+const createInventory = async (data) => {
   return prisma.inventory.create({ data });
 };
 
-export const updateInventory = async (productId, data) => {
+const updateInventory = async (productId, data) => {
   return prisma.inventory.update({
     where: { productId },
     data,
   });
 };
 
-export const deleteInventory = async (productId) => {
+const deleteInventory = async (productId) => {
   return prisma.inventory.delete({ where: { productId } });
+};
+
+module.exports = {
+  getAllInventory,
+  getInventoryByProductId,
+  createInventory,
+  updateInventory,
+  deleteInventory,
 };

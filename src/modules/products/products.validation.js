@@ -1,6 +1,6 @@
-import { z } from "zod";
+const { z } = require("zod");
 
-export const createProductSchema = z.object({
+const createProductSchema = z.object({
   name: z.string().min(1, "Name is required"),
   description: z.string().optional(),
   price: z.number().positive("Price must be a positive number"),
@@ -8,10 +8,15 @@ export const createProductSchema = z.object({
   categoryId: z.string().uuid("Invalid category ID"),
 });
 
-export const updateProductSchema = z.object({
+const updateProductSchema = z.object({
   name: z.string().min(1).optional(),
   description: z.string().optional(),
   price: z.number().positive().optional(),
   imageUrl: z.string().url().optional(),
   categoryId: z.string().uuid().optional(),
 });
+
+module.exports = {
+  createProductSchema,
+  updateProductSchema,
+};

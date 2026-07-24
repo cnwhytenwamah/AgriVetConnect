@@ -1,10 +1,10 @@
-import { Router } from "express";
-import * as servicesController from "./services.controller.js";
-import { validate } from "../../middleware/validate.middleware.js";
-import {
+const { Router } = require("express");
+const servicesController = require("./services.controller");
+const { validate } = require("../../middleware/validate.middleware");
+const {
   createServiceSchema,
   updateServiceSchema,
-} from "./services.validation.js";
+} = require("./services.validation");
 
 const router = Router();
 
@@ -22,4 +22,4 @@ router.put(
 );
 router.delete("/:id", servicesController.deleteService);
 
-export default router;
+module.exports = router;

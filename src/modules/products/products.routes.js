@@ -1,10 +1,10 @@
-import { Router } from "express";
-import * as productsController from "./products.controller.js";
-import { validate } from "../../middleware/validate.middleware.js";
-import {
+const { Router } = require("express");
+const productsController = require("./products.controller");
+const { validate } = require("../../middleware/validate.middleware");
+const {
   createProductSchema,
   updateProductSchema,
-} from "./products.validation.js";
+} = require("./products.validation");
 
 const router = Router();
 
@@ -23,4 +23,4 @@ router.put(
 
 router.delete("/:id", productsController.deleteProduct);
 
-export default router;
+module.exports = router;

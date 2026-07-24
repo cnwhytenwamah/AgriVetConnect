@@ -1,6 +1,6 @@
-import * as productsService from "./products.service.js";
+const productsService = require("./products.service");
 
-export const getAllProducts = async (req, res) => {
+const getAllProducts = async (req, res) => {
   try {
     const products = await productsService.getAllProducts();
     res.status(200).json({ success: true, data: products });
@@ -11,7 +11,7 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
-export const getProductById = async (req, res) => {
+const getProductById = async (req, res) => {
   try {
     const id = String(req.params.id);
     const product = await productsService.getProductById(id);
@@ -28,7 +28,7 @@ export const getProductById = async (req, res) => {
   }
 };
 
-export const createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
   try {
     const product = await productsService.createProduct(req.body);
     res.status(201).json({ success: true, data: product });
@@ -39,7 +39,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
-export const updateProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
     const id = String(req.params.id);
     const product = await productsService.updateProduct(id, req.body);
@@ -51,7 +51,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-export const deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
     const id = String(req.params.id);
     await productsService.deleteProduct(id);
@@ -61,4 +61,11 @@ export const deleteProduct = async (req, res) => {
       .status(500)
       .json({ success: false, message: "Failed to delete product" });
   }
+};
+module.exports = {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
 };

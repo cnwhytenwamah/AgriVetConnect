@@ -1,6 +1,6 @@
-import * as categoriesService from "./categories.service.js";
+const categoriesService = require("./categories.service");
 
-export const getAllCategories = async (req, res) => {
+const getAllCategories = async (req, res) => {
   try {
     const categories = await categoriesService.getAllCategories();
     res.status(200).json({ success: true, data: categories });
@@ -11,7 +11,7 @@ export const getAllCategories = async (req, res) => {
   }
 };
 
-export const getCategoryById = async (req, res) => {
+const getCategoryById = async (req, res) => {
   try {
     const id = String(req.params.id);
     const category = await categoriesService.getCategoryById(id);
@@ -28,7 +28,7 @@ export const getCategoryById = async (req, res) => {
   }
 };
 
-export const createCategory = async (req, res) => {
+const createCategory = async (req, res) => {
   try {
     const category = await categoriesService.createCategory(req.body);
     res.status(201).json({ success: true, data: category });
@@ -39,7 +39,7 @@ export const createCategory = async (req, res) => {
   }
 };
 
-export const updateCategory = async (req, res) => {
+const updateCategory = async (req, res) => {
   try {
     const id = String(req.params.id);
     const category = await categoriesService.updateCategory(id, req.body);
@@ -51,7 +51,7 @@ export const updateCategory = async (req, res) => {
   }
 };
 
-export const deleteCategory = async (req, res) => {
+const deleteCategory = async (req, res) => {
   try {
     const id = String(req.params.id);
     await categoriesService.deleteCategory(id);
@@ -61,4 +61,12 @@ export const deleteCategory = async (req, res) => {
       .status(500)
       .json({ success: false, message: "Failed to delete category" });
   }
+};
+
+module.exports = {
+  getAllCategories,
+  getCategoryById,
+  createCategory,
+  updateCategory,
+  deleteCategory,
 };

@@ -1,6 +1,6 @@
-import * as inventoryService from "./inventory.service.js";
+const inventoryService = require("./inventory.service");
 
-export const getAllInventory = async (req, res) => {
+const getAllInventory = async (req, res) => {
   try {
     const inventory = await inventoryService.getAllInventory();
     res.status(200).json({ success: true, data: inventory });
@@ -11,7 +11,7 @@ export const getAllInventory = async (req, res) => {
   }
 };
 
-export const getInventoryByProductId = async (req, res) => {
+const getInventoryByProductId = async (req, res) => {
   try {
     const productId = String(req.params.productId);
     const inventory = await inventoryService.getInventoryByProductId(productId);
@@ -28,7 +28,7 @@ export const getInventoryByProductId = async (req, res) => {
   }
 };
 
-export const createInventory = async (req, res) => {
+const createInventory = async (req, res) => {
   try {
     const inventory = await inventoryService.createInventory(req.body);
     res.status(201).json({ success: true, data: inventory });
@@ -39,7 +39,7 @@ export const createInventory = async (req, res) => {
   }
 };
 
-export const updateInventory = async (req, res) => {
+const updateInventory = async (req, res) => {
   try {
     const productId = String(req.params.productId);
     const inventory = await inventoryService.updateInventory(
@@ -54,7 +54,7 @@ export const updateInventory = async (req, res) => {
   }
 };
 
-export const deleteInventory = async (req, res) => {
+const deleteInventory = async (req, res) => {
   try {
     const productId = String(req.params.productId);
     await inventoryService.deleteInventory(productId);
@@ -64,4 +64,12 @@ export const deleteInventory = async (req, res) => {
       .status(500)
       .json({ success: false, message: "Failed to delete inventory" });
   }
+};
+
+module.exports = {
+  getAllInventory,
+  getInventoryByProductId,
+  createInventory,
+  updateInventory,
+  deleteInventory,
 };
