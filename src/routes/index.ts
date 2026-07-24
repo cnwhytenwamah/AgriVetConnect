@@ -1,6 +1,6 @@
 import { Router } from "express";
-import categoriesRoutes from "../modules/categories/categories.routes";
-import productsRoutes from "../modules/products/products.routes";
+import categoriesRoutes from "../modules/categories/categories.routes.js";
+import productsRoutes from "../modules/products/products.routes.js";
 import inventoryRoutes from "../modules/inventory/inventory.routes";
 import servicesRoutes from "../modules/services/services.routes";
 import appointmentsRoutes from "../modules/appointments/appointments.routes";

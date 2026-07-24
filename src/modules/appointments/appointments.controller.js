@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import * as appointmentsService from "./appointments.service";
+import * as appointmentsService from "./appointments.service.js";
 
-export const getAllAppointments = async (req: Request, res: Response) => {
+export const getAllAppointments = async (req, res) => {
   try {
     const appointments = await appointmentsService.getAllAppointments();
     res.status(200).json({ success: true, data: appointments });
@@ -12,7 +11,7 @@ export const getAllAppointments = async (req: Request, res: Response) => {
   }
 };
 
-export const getAppointmentById = async (req: Request, res: Response) => {
+export const getAppointmentById = async (req, res) => {
   try {
     const id = String(req.params.id);
     const appointments = await appointmentsService.getAppointmentById(id);
@@ -29,7 +28,7 @@ export const getAppointmentById = async (req: Request, res: Response) => {
   }
 };
 
-export const createAppointment = async (req: Request, res: Response) => {
+export const createAppointment = async (req, res) => {
   try {
     const appointments = await appointmentsService.createAppointment(req.body);
     res.status(201).json({ success: true, data: appointments });
@@ -40,7 +39,7 @@ export const createAppointment = async (req: Request, res: Response) => {
   }
 };
 
-export const updateAppointment = async (req: Request, res: Response) => {
+export const updateAppointment = async (req, res) => {
   try {
     const id = String(req.params.id);
     const appointments = await appointmentsService.updateAppointment(
@@ -58,7 +57,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteAppointment = async (req: Request, res: Response) => {
+export const deleteAppointment = async (req, res) => {
   try {
     const id = String(req.params.id);
     await appointmentsService.deleteAppointment(id);
