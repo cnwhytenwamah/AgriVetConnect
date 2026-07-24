@@ -1,10 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { ApiError } from "../../utils/apiError";
-import {
-  UpdateUserInput,
-  UpdateUserStatusInput,
-  UpdateUserRoleInput,
-} from "./users.validation";
+const { PrismaClient } = require("@prisma/client");
+const { ApiError } = require("../../utils/apiError");
 
 const prisma = new PrismaClient();
 
@@ -21,14 +16,14 @@ const safeUserSelect = {
   updatedAt: true,
 };
 
-export async function getAllUsers() {
+async function getAllUsers() {
   return prisma.user.findMany({
     select: safeUserSelect,
     orderBy: { createdAt: "desc" },
   });
 }
 
-export async function getUserById(id: string) {
+async function getUserById(id) {
   const user = await prisma.user.findUnique({
     where: { id },
     select: safeUserSelect,
@@ -41,7 +36,7 @@ export async function getUserById(id: string) {
   return user;
 }
 
-export async function updateUser(id: string, input: UpdateUserInput) {
+async function updateUser(id, input) {
   await getUserById(id); // throws 404 if not found
 
   return prisma.user.update({
@@ -51,7 +46,7 @@ export async function updateUser(id: string, input: UpdateUserInput) {
   });
 }
 
-export async function updateUserStatus(id: string, input: UpdateUserStatusInput) {
+async function updateUserStatus(id, input) {
   await getUserById(id);
 
   return prisma.user.update({
@@ -61,7 +56,7 @@ export async function updateUserStatus(id: string, input: UpdateUserStatusInput)
   });
 }
 
-export async function updateUserRole(id: string, input: UpdateUserRoleInput) {
+async function updateUserRole(id, input) {
   await getUserById(id);
 
   const role = await prisma.role.findUnique({
@@ -79,8 +74,10 @@ export async function updateUserRole(id: string, input: UpdateUserRoleInput) {
   });
 }
 
-export async function deleteUser(id: string) {
+async function deleteUser(id) {
   await getUserById(id);
 
   await prisma.user.delete({ where: { id } });
 }
+
+module.exports = { getAllUsers, getUserById, updateUser, updateUserStatus, updateUserRole, deleteUser,};
