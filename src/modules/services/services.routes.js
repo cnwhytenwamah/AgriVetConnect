@@ -1,10 +1,10 @@
 import { Router } from "express";
-import * as servicesController from "./services.controller";
-import { validate } from "../../middleware/validate.middleware";
+import * as servicesController from "./services.controller.js";
+import { validate } from "../../middleware/validate.middleware.js";
 import {
   createServiceSchema,
   updateServiceSchema,
-} from "./services.validation";
+} from "./services.validation.js";
 
 const router = Router();
 

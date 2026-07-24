@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import * as categoriesService from "./categories.service";
+import * as categoriesService from "./categories.service.js";
 
-export const getAllCategories = async (req: Request, res: Response) => {
+export const getAllCategories = async (req, res) => {
   try {
     const categories = await categoriesService.getAllCategories();
     res.status(200).json({ success: true, data: categories });
@@ -12,7 +11,7 @@ export const getAllCategories = async (req: Request, res: Response) => {
   }
 };
 
-export const getCategoryById = async (req: Request, res: Response) => {
+export const getCategoryById = async (req, res) => {
   try {
     const id = String(req.params.id);
     const category = await categoriesService.getCategoryById(id);
@@ -29,7 +28,7 @@ export const getCategoryById = async (req: Request, res: Response) => {
   }
 };
 
-export const createCategory = async (req: Request, res: Response) => {
+export const createCategory = async (req, res) => {
   try {
     const category = await categoriesService.createCategory(req.body);
     res.status(201).json({ success: true, data: category });
@@ -40,7 +39,7 @@ export const createCategory = async (req: Request, res: Response) => {
   }
 };
 
-export const updateCategory = async (req: Request, res: Response) => {
+export const updateCategory = async (req, res) => {
   try {
     const id = String(req.params.id);
     const category = await categoriesService.updateCategory(id, req.body);
@@ -52,7 +51,7 @@ export const updateCategory = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteCategory = async (req: Request, res: Response) => {
+export const deleteCategory = async (req, res) => {
   try {
     const id = String(req.params.id);
     await categoriesService.deleteCategory(id);

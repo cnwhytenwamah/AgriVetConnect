@@ -8,37 +8,24 @@ export const getAllServices = async () => {
   });
 };
 
-export const getServiceById = async (id: string) => {
+export const getServiceById = async (id) => {
   return prisma.service.findUnique({
     where: { id },
     include: { appointments: true },
   });
 };
 
-export const createService = async (data: {
-  name: string;
-  description?: string;
-  price: number;
-  durationMins: number;
-}) => {
+export const createService = async (data) => {
   return prisma.service.create({ data });
 };
 
-export const updateService = async (
-  id: string,
-  data: {
-    name?: string;
-    description?: string;
-    price?: number;
-    durationMins?: number;
-  }
-) => {
+export const updateService = async (id, data) => {
   return prisma.service.update({
     where: { id },
     data,
   });
 };
 
-export const deleteService = async (id: string) => {
+export const deleteService = async (id) => {
   return prisma.service.delete({ where: { id } });
 };

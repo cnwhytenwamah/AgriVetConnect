@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import * as productsService from "./products.service";
+import * as productsService from "./products.service.js";
 
-export const getAllProducts = async (req: Request, res: Response) => {
+export const getAllProducts = async (req, res) => {
   try {
     const products = await productsService.getAllProducts();
     res.status(200).json({ success: true, data: products });
@@ -12,7 +11,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-export const getProductById = async (req: Request, res: Response) => {
+export const getProductById = async (req, res) => {
   try {
     const id = String(req.params.id);
     const product = await productsService.getProductById(id);
@@ -29,7 +28,7 @@ export const getProductById = async (req: Request, res: Response) => {
   }
 };
 
-export const createProduct = async (req: Request, res: Response) => {
+export const createProduct = async (req, res) => {
   try {
     const product = await productsService.createProduct(req.body);
     res.status(201).json({ success: true, data: product });
@@ -40,7 +39,7 @@ export const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const updateProduct = async (req: Request, res: Response) => {
+export const updateProduct = async (req, res) => {
   try {
     const id = String(req.params.id);
     const product = await productsService.updateProduct(id, req.body);
@@ -52,7 +51,7 @@ export const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteProduct = async (req: Request, res: Response) => {
+export const deleteProduct = async (req, res) => {
   try {
     const id = String(req.params.id);
     await productsService.deleteProduct(id);

@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import * as servicesService from "./services.service";
+import * as servicesService from "./services.service.js";
 
-export const getAllServices = async (req: Request, res: Response) => {
+export const getAllServices = async (req, res) => {
   try {
     const service = await servicesService.getAllServices();
     res.status(200).json({ success: true, data: service });
@@ -12,7 +11,7 @@ export const getAllServices = async (req: Request, res: Response) => {
   }
 };
 
-export const getServiceById = async (req: Request, res: Response) => {
+export const getServiceById = async (req, res) => {
   try {
     const id = String(req.params.id);
     const service = await servicesService.getServiceById(id);
@@ -29,7 +28,7 @@ export const getServiceById = async (req: Request, res: Response) => {
   }
 };
 
-export const createService = async (req: Request, res: Response) => {
+export const createService = async (req, res) => {
   try {
     const service = await servicesService.createService(req.body);
     res.status(201).json({ success: true, data: service });
@@ -40,7 +39,7 @@ export const createService = async (req: Request, res: Response) => {
   }
 };
 
-export const updateService = async (req: Request, res: Response) => {
+export const updateService = async (req, res) => {
   try {
     const id = String(req.params.id);
     const service = await servicesService.updateService(id, req.body);
@@ -52,7 +51,7 @@ export const updateService = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteService = async (req: Request, res: Response) => {
+export const deleteService = async (req, res) => {
   try {
     const id = String(req.params.id);
     await servicesService.deleteService(id);

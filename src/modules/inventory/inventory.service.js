@@ -8,34 +8,24 @@ export const getAllInventory = async () => {
   });
 };
 
-export const getInventoryByProductId = async (productId: string) => {
+export const getInventoryByProductId = async (productId) => {
   return prisma.inventory.findUnique({
     where: { productId },
     include: { product: true },
   });
 };
 
-export const createInventory = async (data: {
-  productId: string;
-  quantity?: number;
-  lowStockAt?: number;
-}) => {
+export const createInventory = async (data) => {
   return prisma.inventory.create({ data });
 };
 
-export const updateInventory = async (
-  productId: string,
-  data: {
-    quantity?: number;
-    lowStockAt?: number;
-  }
-) => {
+export const updateInventory = async (productId, data) => {
   return prisma.inventory.update({
     where: { productId },
     data,
   });
 };
 
-export const deleteInventory = async (productId: string) => {
+export const deleteInventory = async (productId) => {
   return prisma.inventory.delete({ where: { productId } });
 };

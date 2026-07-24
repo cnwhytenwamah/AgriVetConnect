@@ -1,10 +1,10 @@
 import { Router } from "express";
-import * as productsController from "./products.controller";
-import { validate } from "../../middleware/validate.middleware";
+import * as productsController from "./products.controller.js";
+import { validate } from "../../middleware/validate.middleware.js";
 import {
   createProductSchema,
   updateProductSchema,
-} from "./products.validation";
+} from "./products.validation.js";
 
 const router = Router();
 
