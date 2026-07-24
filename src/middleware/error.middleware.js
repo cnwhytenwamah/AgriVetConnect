@@ -1,16 +1,4 @@
-import { Request, Response, NextFunction } from "express";
-
-interface AppError extends Error {
-  statusCode?: number;
-  isOperational?: boolean;
-}
-
-export function errorMiddleware(
-  err: AppError,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
+function errorMiddleware(err, req, res, next) {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
 
@@ -22,3 +10,5 @@ export function errorMiddleware(
     ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
   });
 }
+
+module.exports = { errorMiddleware };
