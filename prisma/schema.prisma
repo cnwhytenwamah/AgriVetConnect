@@ -8,8 +8,8 @@ datasource db {
 }
 
 model Role {
-  id    String @id @default(uuid())
-  name  String @unique
+  id   String @id @default(uuid())
+  name String @unique // ADMIN, STAFF, CUSTOMER
 
   users User[]
 
@@ -20,7 +20,7 @@ model Role {
 }
 
 model User {
-  id       String  @id @default(uuid())
+  id        String  @id @default(uuid())
   firstName String
   lastName  String
   email     String  @unique
@@ -44,12 +44,12 @@ model User {
 }
 
 model Service {
-  id              String   @id @default(uuid())
+  id              String  @id @default(uuid())
   name            String
   description     String?
-  price           Decimal  @db.Decimal(10, 2)
+  price           Decimal @db.Decimal(10, 2)
   durationMinutes Int
-  isActive        Boolean  @default(true)
+  isActive        Boolean @default(true)
 
   appointments Appointment[]
 
@@ -120,9 +120,9 @@ model Product {
 }
 
 model Inventory {
-  id            String @id @default(uuid())
-  quantity      Int    @default(0)
-  reorderLevel  Int    @default(10)
+  id           String @id @default(uuid())
+  quantity     Int    @default(0)
+  reorderLevel Int    @default(10)
 
   productId String  @unique
   product   Product @relation(fields: [productId], references: [id])
@@ -217,12 +217,12 @@ enum PaymentStatus {
 }
 
 model Payment {
-  id              String        @id @default(uuid())
-  amount          Decimal       @db.Decimal(10, 2)
-  method          PaymentMethod
-  status          PaymentStatus @default(PENDING)
-  transactionRef  String?       @unique
-  paidAt          DateTime?
+  id             String        @id @default(uuid())
+  amount         Decimal       @db.Decimal(10, 2)
+  method         PaymentMethod
+  status         PaymentStatus @default(PENDING)
+  transactionRef String?       @unique
+  paidAt         DateTime?
 
   orderId String @unique
   order   Order  @relation(fields: [orderId], references: [id])
@@ -235,7 +235,7 @@ model Payment {
 
 model Review {
   id      String  @id @default(uuid())
-  rating  Int    
+  rating  Int 
   comment String?
 
   userId String

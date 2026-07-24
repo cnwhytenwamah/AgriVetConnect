@@ -2,34 +2,20 @@
   "name": "agrivet-connect",
   "version": "1.0.0",
   "description": "Backend API for AgriVet Connect - a platform connecting livestock owners with veterinary services and agricultural supplies.",
-  "main": "dist/server.js",
+  "main": "src/server.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "test": "jest"
   },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
-  },
-  "keywords": [
-    "nodejs",
-    "express",
-    "typescript",
-    "prisma",
-    "postgresql",
-    "veterinary",
-    "capstone"
-  ],
-  "author": "Nwamah Clinton, Odusanya Abayomi, Oseni Tomiwa Hammed",
+  "keywords": ["nodejs", "express", "prisma", "postgresql", "veterinary", "capstone"],
+  "author": "Nwamah Clinton, Odusanya Abayomi, Oseni Tomiwa",
   "license": "ISC",
   "type": "commonjs",
-  "engines": {
-    "node": ">=24"
-  },
+  "engines": { "node": ">=24" },
   "dependencies": {
     "@prisma/client": "^6.19.0",
     "bcrypt": "^6.0.0",
@@ -45,23 +31,9 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/bcrypt": "^6.0.0",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/jest": "^30.0.0",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/morgan": "^1.9.10",
-    "@types/multer": "^2.2.0",
-    "@types/node": "^24.10.0",
-    "@types/supertest": "^7.2.1",
-    "@types/swagger-jsdoc": "^6.0.4",
-    "@types/swagger-ui-express": "^4.1.8",
     "jest": "^30.4.2",
-    "prisma": "^6.19.3",
-    "supertest": "^7.2.2",
-    "ts-jest": "^29.4.11",
-    "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "5.9"
+    "nodemon": "^3.1.9",
+    "prisma": "^6.19.0",
+    "supertest": "^7.2.2"
   }
 }
