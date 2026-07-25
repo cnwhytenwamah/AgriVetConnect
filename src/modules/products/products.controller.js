@@ -30,7 +30,11 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const product = await productsService.createProduct(req.body);
+    const productData = { ...req.body };
+    if (req.file) {
+      productData.imageUrl = `/uploads/${req.file.filename}`;
+    }
+    const product = await productsService.createProduct(productData);
     res.status(201).json({ success: true, data: product });
   } catch (error) {
     res
@@ -42,7 +46,11 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const id = String(req.params.id);
-    const product = await productsService.updateProduct(id, req.body);
+    const productData = { ...req.body };
+    if (req.file) {
+      productData.imageUrl = `/uploads/${req.file.filename}`;
+    }
+    const product = await productsService.updateProduct(id, productData);
     res.status(200).json({ success: true, data: product });
   } catch (error) {
     res
